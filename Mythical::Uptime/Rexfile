@@ -1,0 +1,8 @@
+use Rex -feature => ['1.4'];
+
+user 'root';
+
+desc 'Get uptime';
+task 'uptime', 'polarbear.vs.mythic-beasts.com', sub {
+    say run 'uptime';
+};

@@ -1,0 +1,10 @@
+group myservers => "polarbear.vs.mythic-beasts.com";
+
+user 'root';
+     
+desc "Update all the packages";
+task "update", group => "myservers", sub {
+   my $update = run "aptitude update";
+   say $?;
+   my $upgrade = run "aptitude -y safe-upgrade";
+};

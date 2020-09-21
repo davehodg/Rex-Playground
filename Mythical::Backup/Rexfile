@@ -1,0 +1,20 @@
+use Rex -feature => [ '1.2' ];
+use Rex::Commands::Sync;
+
+
+user 'root';
+
+group mythical => 'polarbear.vs.mythic-beasts.com';
+
+desc "File backup";
+task "filebackup", "polarbear.vs.mythic-beasts.com", sub {
+  say "File backup";
+  sync_down "/home/daveh/davehodgkinson", "/Users/daveh/backups";
+};
+
+
+desc "MySQL backup";
+task "mysqlbackup", sub {
+  say "MySQL backup"
+
+};

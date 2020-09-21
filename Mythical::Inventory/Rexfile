@@ -1,0 +1,14 @@
+use Rex -feature => [ '1.2' ];
+use Rex::Commands::Inventory;
+
+
+user 'root';
+
+group mythical => 'polarbear.vs.mythic-beasts.com';
+
+task "get_inventory", sub {
+  my $inventory = inventory();
+  print Dumper($inventory);
+};
+
+

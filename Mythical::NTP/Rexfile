@@ -1,0 +1,25 @@
+use Rex -feature => [ '1.2' ];
+
+user 'root';
+
+group servers => 'polarbear.vs.mythic-beasts.com';
+
+environment live => sub {
+    group servers => 'polarbear.vs.mythic-beasts.com';
+};
+
+desc 'Setup NTP';
+task 'ntp', group => 'servers', sub {
+    pkg 'ntp', ensure => 'present';
+
+    file '/etc/ntp.conf',
+        ensure    => 'present',
+        source    => 'files/etc/ntp.conf',
+        owner     => 'root',
+        group     => 'root',
+        mode      => '0644',
+        on_change => sub { service ntpd => 'restart' };
+
+    service ntp => ensure => 'running';
+};
+
